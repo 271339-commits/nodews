@@ -48,3 +48,21 @@ exports.criar = (req, res) => {
     res.status(400).json({ mensagem: error.message });
   }
 };
+
+exports.atualizar = (req, res) => {
+  try {
+    const produto = service.atualizar(req.params.id, req.body);
+
+    if (!produto) {
+      return res.status(404).json({
+        mensagem: "Produto não encontrado"
+      });
+    }
+
+    res.status(200).json(produto);
+  } catch (error) {
+    res.status(400).json({
+      mensagem: error.message
+    });
+  }
+};

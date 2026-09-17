@@ -32,4 +32,22 @@ function criar(dados) {
   return produto;
 }
 
-module.exports = { listar, buscarPorId, criar };
+function atualizar(id, dados) {
+  const produto = produtos.find(p => p.id === Number(id));
+
+  if (!produto) {
+    return null;
+  }
+
+  if (!dados.nome || dados.preco == null) {
+    throw new Error("nome e preco são obrigatórios");
+  }
+
+  produto.nome = dados.nome;
+  produto.preco = dados.preco;
+
+  return produto;
+}
+
+
+module.exports = {   listar, buscarPorId,criar, atualizar};

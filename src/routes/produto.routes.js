@@ -22,5 +22,7 @@ const controller =
 router.get("/", controller.listar);
 router.get("/:id", controller.buscarPorId);
 router.post("/", controller.criar);
+router.put("/:id", controller.atualizar);
+
 
 module.exports = router;
