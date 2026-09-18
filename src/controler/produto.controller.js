@@ -66,3 +66,34 @@ exports.atualizar = (req, res) => {
     });
   }
 };
+
+exports.deletar = (req, res) => {
+  const produto = service.deletar(req.params.id);
+
+  if (!produto) {
+    return res.status(404).json({
+      mensagem: "Produto não encontrado"
+    });
+  }
+
+  res.status(200).json({
+    mensagem: "Produto deletado com sucesso",
+    produto: produto
+  });
+};
+
+exports.atualizarParcial = (req, res) => {
+  const produto = service.atualizarParcial(
+    req.params.id,
+    req.body
+  );
+
+  if (!produto) {
+    return res.status(404).json({
+      mensagem: "Produto não encontrado"
+    });
+  }
+
+  res.status(200).json(produto);
+};
+

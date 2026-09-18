@@ -49,5 +49,36 @@ function atualizar(id, dados) {
   return produto;
 }
 
+function deletar(id) {
+  const index = produtos.findIndex(p => p.id === Number(id));
 
-module.exports = {   listar, buscarPorId,criar, atualizar};
+  if (index === -1) {
+    return null;
+  }
+
+  const produtoRemovido = produtos.splice(index, 1);
+
+  return produtoRemovido[0];
+}
+
+function atualizarParcial(id, dados) {
+  const produto = produtos.find(p => p.id === Number(id));
+
+  if (!produto) {
+    return null;
+  }
+
+  if (dados.nome !== undefined) {
+    produto.nome = dados.nome;
+  }
+
+  if (dados.preco !== undefined) {
+    produto.preco = dados.preco;
+  }
+
+  return produto;
+}
+
+
+
+module.exports = { listar, buscarPorId,criar, atualizar, deletar,atualizarParcial};
